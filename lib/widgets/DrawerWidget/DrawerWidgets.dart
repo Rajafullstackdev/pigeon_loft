@@ -39,29 +39,34 @@ class _drawerState extends State<drawer> {
 
                     Material(
                       elevation: 5,
-                      child: ListTile(
-                        tileColor:drawercon.selectIndex==index? spbgColor:whiteCl,
-                        onTap: () {
-                          setState(() {
-                            drawercon.closeDrawer(Index: index);
-                          });
-                        },
-                        leading: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: custtomIconButton(
-                            outterColor: drawercon.selectIndex==index?whiteCl:spbgColor,
-                            icon: Icons.home,
-                            iconColor: drawercon.selectIndex==index?spbgColor:whiteCl,
-                          ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border:
                         ),
-                        title: Custometext(
-                          textStyle: fontsValue.fontstyleAboreto(
-                            fontSize: small,
-                            fontWeight: drawercon.selectIndex==index?FontWeight.w700:FontWeight.w500,
-                            fontColor: drawercon.selectIndex==index? whiteCl:spbgColor
+                        child: ListTile(
+                          tileColor:drawercon.selectIndex==index? spbgColor:whiteCl,
+                          onTap: () {
+                            setState(() {
+                              drawercon.closeDrawer(Index: index);
+                            });
+                          },
+                          leading: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: custtomIconButton(
+                              outterColor: drawercon.selectIndex==index?whiteCl:spbgColor,
+                              icon: Icons.home,
+                              iconColor: drawercon.selectIndex==index?spbgColor:whiteCl,
+                            ),
                           ),
-                          textName: drawercon.menuList[index].itemName,
+                          title: Custometext(
+                            textStyle: fontsValue.fontstyleAboreto(
+                              fontSize: small,
+                              fontWeight: drawercon.selectIndex==index?FontWeight.w700:FontWeight.w500,
+                              fontColor: drawercon.selectIndex==index? whiteCl:spbgColor
+                            ),
+                            textName: drawercon.menuList[index].itemName,
+                          ),
                         ),
                       ),
                     );

@@ -119,7 +119,7 @@ class _userRegScreenState extends State<userRegScreen> {
 
                 controller: PhoneNoController,
                 keyboardType: TextInputType.number,
-                maxLength: 10,
+               // maxLength: 10,
                 decoration: InputDecoration(
                   prefixIcon:Icon(Icons.phone,color: spbgColor,),
                   counterText: "",
