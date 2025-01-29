@@ -41,3 +41,15 @@ String lottieAnimation='assets/otpwaiting (New).json';
 hideKeyBoard(BuildContext context){
  return FocusScope.of(context).unfocus();
 }
+/// TimeDisplay Screen
+
+String timeStandard='Indian Standard Time';
+
+String clockImg='assets/Clock.png';
+
+///DashBoard Screen
+
+String userImg='assets/UserICon.png';
+String birdImg='assets/bird.png';
+String singleBird='assets/Single.png';
+String pairBird='assets/Pairs.png';

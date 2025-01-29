@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phone_number_hint/phone_number_hint.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 import 'package:pigeon_loft/Controller/authController.dart';
 import 'package:pigeon_loft/Screens/AnthendicationScreen/OtpScreen.dart';

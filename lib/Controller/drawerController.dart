@@ -4,8 +4,11 @@ import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 import 'package:pigeon_loft/Model/drawerModel.dart';
 
 class drawerController extends GetxController {
-
+/// selected index
   int selectIndex=0;
+
+  ///theme icon value
+  bool theme=false;
   /// Menu List Item
   List<drawerMenu> menuList = [
     drawerMenu(
@@ -84,8 +87,13 @@ class drawerController extends GetxController {
   /// close the drawer and check index value
 
   closeDrawer( {Index}) {
-   // drawerKey.currentState!.closeDrawer();
+   drawerKey.currentState!.closeDrawer();
     selectIndex=Index;
+    update();
+  }
+
+  changeTheme(){
+    theme=!theme;
     update();
   }
 }
