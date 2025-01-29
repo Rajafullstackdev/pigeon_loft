@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
+import 'package:pigeon_loft/Screens/DashBoardScreen/DashBoardScreen.dart';
 import 'package:pigeon_loft/Screens/SplashScreen/SplashScreen.dart';
-import 'package:pigeon_loft/demoScrren.dart';
 
 
 void main() {
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       )
       ),
       debugShowCheckedModeBanner: false,
-      home: FormWidget(),
+      home: DashBoardScreen(),
     );
   }
 }

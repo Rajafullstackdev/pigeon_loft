@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
-import 'package:pigeon_loft/Screens/userRegScreen/userRegScreen.dart';
+import 'package:pigeon_loft/Screens/DashBoardScreen/DashBoardScreen.dart';
 import 'package:pigeon_loft/untils/userReguntils/userReguntils.dart';
 import 'package:pigeon_loft/widgets/AppBarWidgets/AppBarWidget.dart';
 import 'package:pigeon_loft/widgets/CopyrightWidgets/CopyrightsWidget.dart';
-import 'package:pigeon_loft/widgets/CustomButton.dart';
+import 'package:pigeon_loft/widgets/CusttomButton/CustomButton.dart';
 import 'package:pigeon_loft/widgets/TextWidgets/customeText.dart';
 
 class userRegScreen extends StatefulWidget {
@@ -149,8 +149,7 @@ class _userRegScreenState extends State<userRegScreen> {
                 elevation: 5,
                 child: Button(
                   clickfunction: () {
-                    Get.off(userRegScreen(phoneNumber: widget.phoneNumber,
-                    ),transition: Transition.cupertino,curve: Curves.easeInOut);
+                    Get.off(DashBoardScreen(),transition: Transition.cupertino,curve: Curves.easeInOut);
                   },
                   buttonColor: spbgColor,
                   buttonElevation: 10,

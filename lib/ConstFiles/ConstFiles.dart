@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pigeon_loft/widgets/FontWidgets/FontWidget.dart';
 
 Color spbgColor=Color(0xff6200ed);
@@ -23,10 +24,19 @@ double medium=18;
 double large=20;
 double xlLarge=22;
 
-/// fontt Class Const Fill
+/// font Class Const Fill
 FontsClass fontsValue = FontsClass();
 
+/// lottie file
 String lottieAnimation='assets/otpwaiting (New).json';
+
+
+///drawer Key
+
+ GlobalKey<ScaffoldState> drawerKey=GlobalKey();
+ const IconData menu = IconData(0xe3dc, fontFamily: 'MaterialIcons');
+
+///hide keyboard function
 
 hideKeyBoard(BuildContext context){
  return FocusScope.of(context).unfocus();

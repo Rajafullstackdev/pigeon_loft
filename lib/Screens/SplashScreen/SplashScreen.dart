@@ -30,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           curve: Curves.easeInOut,
           transition: Transition.zoom);
     });
+
     super.initState();
   }
 

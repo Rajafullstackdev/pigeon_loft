@@ -5,10 +5,8 @@ import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 import 'package:pigeon_loft/Screens/userRegScreen/userRegScreen.dart';
 import 'package:pigeon_loft/untils/AuthUntils/Otpuntils.dart';
 import 'package:pigeon_loft/widgets/AppBarWidgets/AppBarWidget.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/otp_text_field.dart';
 import 'package:pigeon_loft/widgets/CopyrightWidgets/CopyrightsWidget.dart';
-import 'package:pigeon_loft/widgets/CustomButton.dart';
+import 'package:pigeon_loft/widgets/CusttomButton/CustomButton.dart';
 import 'package:pigeon_loft/widgets/FontWidgets/FontWidget.dart';
 import 'package:pigeon_loft/widgets/TextWidgets/customeText.dart';
 import 'package:pinput/pinput.dart';
@@ -26,25 +24,25 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
 
-  OtpFieldController otpController = OtpFieldController();
 
 
   @override
   void initState() {
     // TODO: implement initState
-  //  _verifyphone();
+  //  _verifyPhone();
     super.initState();
   }
   var _verificationCode;
+
   var PinValue;
 
-  _verifyphone()async{
+  _verifyPhone({phoneNumber})async{
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: widget.phoneNumber ,
+        phoneNumber: phoneNumber,
         verificationCompleted:(PhoneAuthCredential credential)async{
           await FirebaseAuth.instance.signInWithCredential(credential).then((value)async{
             if(value.user!=null){
-              Get.off(userRegScreen(phoneNumber: widget.phoneNumber,
+              Get.off(userRegScreen(phoneNumber: phoneNumber,
               ),transition: Transition.cupertino,curve: Curves.easeInOut);
             }
           });
@@ -66,12 +64,28 @@ class _OtpScreenState extends State<OtpScreen> {
     //check();
 
   }
+
+
+  clickToVerify({validPin}){
+    try{
+      FirebaseAuth.instance.signInWithCredential(
+          PhoneAuthProvider.credential(
+              verificationId:_verificationCode ,
+              smsCode: validPin)).then((value){
+        if(value.user!=null){
+          return true;
+        }
+      });
+    }
+    catch(e){
+      return false;
+
+    }
+  }
+
   FontsClass fontsValue = FontsClass();
   @override
   Widget build(BuildContext context) {
-
-    double width=MediaQuery.of(context).size.width;
-    double height=MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -111,7 +125,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
         
-            ///PinPUt TextField
+            ///PinPut TextField
         
             Pinput(
               isCursorAnimationEnabled: true,
@@ -173,8 +187,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     )),
               ),
             ),
-        
-            //  Text(widget.phoneNumber.toString())
+
         
           ],
         ),

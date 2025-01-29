@@ -8,11 +8,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phone_number_hint/phone_number_hint.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
+import 'package:pigeon_loft/Controller/authController.dart';
 import 'package:pigeon_loft/Screens/AnthendicationScreen/OtpScreen.dart';
 import 'package:pigeon_loft/untils/AuthUntils/Authuntil.dart';
 import 'package:pigeon_loft/widgets/AppBarWidgets/AppBarWidget.dart';
 import 'package:pigeon_loft/widgets/CopyrightWidgets/CopyrightsWidget.dart';
-import 'package:pigeon_loft/widgets/CustomButton.dart';
+import 'package:pigeon_loft/widgets/CusttomButton/CustomButton.dart';
 import 'package:pigeon_loft/widgets/TextWidgets/customeText.dart';
 
 class AnthendicationScreen extends StatefulWidget {
@@ -26,20 +27,11 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
 
 
   Country _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode('91');
-
-  double rorateValue = 0;
-  double ContaienrWidth = 1.5;
-
-  TextEditingController PhoneNoController = TextEditingController();
-  var focusNode = FocusNode();
-
-  String _result = 'Unknown';
-  final _phoneNumberHintPlugin = PhoneNumberHint();
-  bool errorCheck=false;
+  final authCon=Get.put(authControll(),tag: 'AuthController');
 
   @override
   void initState() {
-    getPhoneNumber();
+    authCon. getPhoneNumber();
     // TODO: implement initState
     super.initState();
   }
@@ -86,8 +78,8 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
                     onTap: () {
                       _openCountryPickerDialog();
                       setState(() {
-                        rorateValue = rorateValue == 0 ? 1 / 2 : 0;
-                        ContaienrWidth = ContaienrWidth == 1.5 ? 2.5 : 1.5;
+                        authCon.rorateValue = authCon.rorateValue == 0 ? 1 / 2 : 0;
+                        authCon.ContaienrWidth = authCon.ContaienrWidth == 1.5 ? 2.5 : 1.5;
                       });
                     },
                     child: FittedBox(
@@ -103,19 +95,19 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
                                   border: Border.all(
-                                      width: ContaienrWidth, color: spbgColor)),
+                                      width: authCon.ContaienrWidth, color: spbgColor)),
                               child: FittedBox(
                                 fit: BoxFit.contain,
                                 child: Row(
                                   children: [
                                     _buildDialogItem(_selectedDialogCountry),
                                     AnimatedRotation(
-                                      turns: rorateValue,
+                                      turns: authCon.rorateValue,
                                       duration: Duration(milliseconds: 300),
                                       curve: Curves.linear,
                                       child: Icon(
                                         Icons.arrow_drop_down,
-                                        color: rorateValue != 0
+                                        color: authCon.rorateValue != 0
                                             ? spbgColor
                                             : Colors.black,
                                       ),
@@ -128,7 +120,7 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
                                 bottom: 55, left: 15, top: 4),
                             child: Container(
                                 height: 20,
-                                width: 50,
+                                width: 55,
                                 decoration: BoxDecoration(color: Colors.white),
                                 child: Center(
                                   child: Text(
@@ -155,20 +147,20 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
                       left: 8,
                     ),
                     child: TextField(
-                      focusNode: focusNode,
+                      focusNode: authCon.focusNode,
                       onTap: () {
                         //getPhoneNumber();
                       },
                       onChanged: (val){
                         setState(() {
-                          errorCheck=false;
+                          authCon.errorCheck=false;
                         });
                       },
-                      controller: PhoneNoController,
+                      controller: authCon.PhoneNoController,
                       keyboardType: TextInputType.number,
-                      maxLength: 10,
+                      maxLength: 15,
                       decoration: InputDecoration(
-                        suffixIcon:errorCheck? Icon(Icons.error,color: errorColor,):null,
+                        suffixIcon:authCon.errorCheck? Icon(Icons.error,color: errorColor,):null,
                         counterText: "",
                         labelText: "Phone Number",
                         focusedBorder: OutlineInputBorder(
@@ -196,12 +188,12 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
               elevation: 5,
               child: Button(
                 clickfunction: () {
-                  if(PhoneNoController.text.isNotEmpty && PhoneNoController.text.length==10){
+                  if(authCon.PhoneNoController.text.isNotEmpty && authCon.PhoneNoController.text.length==10){
                     setState(() {
-                      errorCheck=false;
+                      authCon. errorCheck=false;
                     });
                     Get.off(OtpScreen(
-                      phoneNumber: '+${_selectedDialogCountry.phoneCode}${PhoneNoController.text}',
+                      phoneNumber: '+${_selectedDialogCountry.phoneCode}${authCon.PhoneNoController.text}',
 
                     ), transition: Transition.cupertino,curve: Curves.easeInOut);
 
@@ -209,7 +201,7 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
                   }
                   else{
                     setState(() {
-                      errorCheck=true;
+                      authCon.errorCheck=true;
                     });
                     print('Controller is Empty');
                   }
@@ -233,12 +225,17 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
             ),
         
             /// hint Text
-            Text(
-              hintText,
-              style: fontsValue.fontstyleAboreto(
-                  fontColor: greyColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: xlSmall),
+            SizedBox(
+              width: 430,
+              child: Text(
+                hintText,
+                textAlign: TextAlign.center,
+                style: fontsValue.fontstyleAboreto(
+
+                    fontColor: greyColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: vSmall),
+              ),
             )
           ],
         ),
@@ -250,7 +247,7 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
   }
 
 
-  Future<void> getPhoneNumber() async {
+/*  Future<void> getPhoneNumber() async {
     String? result;
     try {
       result = await _phoneNumberHintPlugin.requestHint(
@@ -267,7 +264,7 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
     setState(() {
       _result = result ?? '';
     });
-  }
+  }*/
 
   Widget _buildDialogItem(Country country) => Row(
         children: <Widget>[
@@ -292,10 +289,10 @@ class _AnthendicationScreenState extends State<AnthendicationScreen> {
               onValuePicked: (Country country) {
                 setState(() => _selectedDialogCountry = country);
                 setState(() {
-                  rorateValue = 0;
-                  ContaienrWidth = 1.5;
+                  authCon.rorateValue = 0;
+                  authCon.ContaienrWidth = 1.5;
                 });
-                focusNode.requestFocus();
+                authCon.focusNode.requestFocus();
               },
               itemBuilder: _buildDialogItem,
               priorityList: [
