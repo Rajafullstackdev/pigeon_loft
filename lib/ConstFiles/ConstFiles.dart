@@ -53,10 +53,10 @@ String clockImg='assets/Clock.png';
 
 String userImg='assets/UserICon.png';
 String birdImg='assets/bird.png';
-String singleBird='assets/Single.png';
-String pairBird='assets/Pairs.png';
+String singleBird='assets/singleBird.png';
+String pairBird='assets/twoBirds(Pair).png';
 
-///IMage Selecte Option
+///IMage Select Option
 
 String imgOptionCamera='camera';
 String imgOptionGallery='gallery';

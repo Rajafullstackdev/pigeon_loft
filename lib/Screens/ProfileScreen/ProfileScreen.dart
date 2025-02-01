@@ -19,7 +19,6 @@ class profileScreen extends StatefulWidget {
 }
 
 class _profileScreenState extends State<profileScreen> {
-
   final dataController = Get.put(ProfileController(), tag: 'profileController');
 
   @override
@@ -49,8 +48,6 @@ class _profileScreenState extends State<profileScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-
-
                 /// userContainer Widgets
                 GestureDetector(
                   onTap: () {
@@ -69,7 +66,6 @@ class _profileScreenState extends State<profileScreen> {
                     ),*/
                     child: Column(
                       children: [
-
                         /// User Icon Widgets
                         Hero(
                           tag: 'Profile',
@@ -81,12 +77,21 @@ class _profileScreenState extends State<profileScreen> {
                                 color: whiteColor,
                                 borderRadius: BorderRadius.circular(100),
                                 child: Obx(() {
-                                  return CircleAvatar(
-                                    foregroundImage: dataController.photo1.value == null
-                                        ? AssetImage(userImg)
-                                        : FileImage(dataController.photo1.value!) as ImageProvider,
-                                    radius: 40,
-                                  );
+                                  return dataController.photo1.value == null
+                                      ? CircleAvatar(
+                                          backgroundColor: spbgColor,
+                                          radius: 40,
+                                          child: Icon(
+                                            CupertinoIcons.person,
+                                            size: 40,
+                                            color: whiteColor,
+                                          ))
+                                      : CircleAvatar(
+                                          foregroundImage: FileImage(
+                                                  dataController.photo1.value!)
+                                              as ImageProvider,
+                                          radius: 40,
+                                        );
                                 }),
                               ),
                               Material(
@@ -126,7 +131,6 @@ class _profileScreenState extends State<profileScreen> {
                   ),
                 ),
 
-
                 /// UserName Controller field
                 Container(
                   height: 80,
@@ -138,21 +142,21 @@ class _profileScreenState extends State<profileScreen> {
                   ),
                   child: TextField(
                     focusNode: dataController.nameFocus,
-                    inputFormatters: [
-                      UpperCaseTextFormatter()
-                    ],
+                    inputFormatters: [UpperCaseTextFormatter()],
                     onTap: () {},
                     controller: dataController.userNameController,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person, color: spbgColor,),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: spbgColor,
+                      ),
                       counterText: "",
                       labelText: "Name",
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: spbgColor, width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color:
-                        spbgColor, width: 1.5),
+                        borderSide: BorderSide(color: spbgColor, width: 1.5),
                       ),
                       labelStyle: fontsValue.fontstyleAboreto(
                           fontSize: small,
@@ -161,7 +165,6 @@ class _profileScreenState extends State<profileScreen> {
                     ),
                   ),
                 ),
-
 
                 /// User Phone Controller field  14 character
                 IgnorePointer(
@@ -180,15 +183,17 @@ class _profileScreenState extends State<profileScreen> {
                       keyboardType: TextInputType.number,
                       // maxLength: 10,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone, color: spbgColor,),
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: spbgColor,
+                        ),
                         counterText: "",
                         labelText: "Phone Number",
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: spbgColor, width: 2),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color:
-                          spbgColor, width: 1.5),
+                          borderSide: BorderSide(color: spbgColor, width: 1.5),
                         ),
                         labelStyle: fontsValue.fontstyleAboreto(
                             fontSize: small,
@@ -207,9 +212,7 @@ class _profileScreenState extends State<profileScreen> {
                     color: spbgColor,
                     elevation: 5,
                     child: Button(
-                      clickfunction: () {
-
-                      },
+                      clickfunction: () {},
                       buttonColor: spbgColor,
                       buttonElevation: 10,
                       buttonHeight: 50,
@@ -218,17 +221,15 @@ class _profileScreenState extends State<profileScreen> {
                       buttonwidth: 380,
                       child: Center(
                           child: Custometext(
-                            textName: submit,
-                            textStyle: fontsValue.fontstyleAboreto(
-                                fontColor: Colors.white,
-                                fontSize: small,
-                                fontWeight: FontWeight.w600),
-                          )),
+                        textName: submit,
+                        textStyle: fontsValue.fontstyleAboreto(
+                            fontColor: Colors.white,
+                            fontSize: small,
+                            fontWeight: FontWeight.w600),
+                      )),
                     ),
                   ),
                 ),
-
-
               ],
             ),
           ),

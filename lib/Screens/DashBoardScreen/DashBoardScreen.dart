@@ -251,7 +251,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ///  pigeon Image widgets
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Image.asset(singleBird,height: 100,width: 100,),
+                        child: Image.asset(singleBird,height: 90,width: 100,fit: BoxFit.cover,),
                       )
                     ],
                   ),
@@ -331,10 +331,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
 
                     ///  pigeon Image widgets
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Image.asset(pairBird,height: 120,width: 120,fit: BoxFit.contain,),
-                    )
+                    Image.asset(pairBird,height: 90,width: 120,fit: BoxFit.fill,),
                   ],
                 ),
               ),

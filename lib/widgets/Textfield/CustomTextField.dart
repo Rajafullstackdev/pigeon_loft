@@ -4,26 +4,30 @@ import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 
 class CustomTextField extends StatefulWidget {
   TextEditingController controller;
-  String hintText;
+  String ?hintText;
   TextStyle ?hintStyle;
   Function(String) ?onSubmit;
   List <TextInputFormatter> ? inputFormat;
   TextAlign ?alignText;
   Widget?suffixWidget;
   Widget?prefixWidget;
+  Widget?labelWidget;
   EdgeInsets?conPadding;
+  OutlineInputBorder ?fieldBorder;
 
   CustomTextField(
       {
         required this.controller,
         this.hintStyle,
-        required this.hintText,
+        this.hintText,
         this.onSubmit,
+        this.fieldBorder,
         this.inputFormat,
         this.alignText,
         this.suffixWidget,
         this.prefixWidget,
         this.conPadding,
+        this.labelWidget,
       });
 
   @override
@@ -36,7 +40,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextField(
       controller: widget.controller,
       decoration: InputDecoration(
-          border: InputBorder.none,
+        border: widget.fieldBorder?? OutlineInputBorder(
+          borderSide: BorderSide(color: spbgColor,width: 2),
+          borderRadius: BorderRadius.circular(5),
+        ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: spbgColor,width: 2),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: spbgColor,width: 2),
+            borderRadius: BorderRadius.circular(5),
+          ),
           hintText: widget.hintText,
           suffixIcon: widget.suffixWidget,
           prefixIcon:widget.prefixWidget ,
@@ -44,10 +59,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintStyle: widget.hintStyle ?? fontsValue.fontstyleAboreto(
             fontWeight: FontWeight.w600,
             fontSize: small
-          )
+          ),
+        label:widget.labelWidget ??Text('empty'),
+        labelStyle:  widget.hintStyle ?? fontsValue.fontstyleAboreto(
+            fontWeight: FontWeight.w600,
+            fontSize: small
+        ),
       ),
       style: widget.hintStyle ?? fontsValue.fontstyleAboreto(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           fontSize: small
       ),
      // onSubmitted: widget.onSubmit,
