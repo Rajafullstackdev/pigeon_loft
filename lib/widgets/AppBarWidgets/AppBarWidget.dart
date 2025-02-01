@@ -7,8 +7,9 @@ import 'package:pigeon_loft/widgets/TextWidgets/customeText.dart';
 class AppBarWidget extends StatefulWidget {
   String textName;
   Widget ?leadingWidget;
+  Widget ?centerWidget;
   List<Widget>? listWidget;
-  AppBarWidget({required this.textName,this.leadingWidget,this.listWidget});
+  AppBarWidget({required this.textName,this.leadingWidget,this.listWidget,this.centerWidget});
 
   @override
   State<AppBarWidget> createState() => _AppBarWidgetState();
@@ -25,7 +26,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       elevation: 0,
       backgroundColor: spbgColor,
     //  bottom: PreferredSize(preferredSize: Size(double.infinity, 2), child: Divider()),
-      title: Custometext(
+      title:widget. centerWidget??
+      Custometext(
         textName: widget.textName,
         textStyle: fontsValue.fontstyleAboreto(
           fontWeight: FontWeight.w500,

@@ -30,12 +30,12 @@ class _custtomIconButtonState extends State<custtomIconButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color:widget.outterColor??Colors.white,
+      color:widget.outterColor??whiteColor,
       elevation: widget.elevation ?? 10,
       borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
       shadowColor: widget.shadowColor ?? Colors.black12,
       child: widget.child ??
-          Icon(widget.icon, color: widget.iconColor ?? spbgColor,),
+          Icon(widget.icon, color: widget.iconColor ?? spbgColor, size: widget.iconSize??20,),
     );
   }
 }

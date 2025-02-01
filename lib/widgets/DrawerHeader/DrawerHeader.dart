@@ -23,7 +23,7 @@ class _drawerHeadState extends State<drawerHead> {
     return  Container(
       height: 200,
       width: double.infinity,
-      padding: EdgeInsets.only(left: 15,top: 25),
+      padding: EdgeInsets.only(left: 15,top: 40),
       decoration: BoxDecoration(
           color: spbgColor,
           border: Border(
@@ -61,14 +61,20 @@ class _drawerHeadState extends State<drawerHead> {
                   padding: const EdgeInsets.only(right: 10),
                   child: CircleAvatar(
                     backgroundColor: drawerCon.theme?Colors.black:whiteColor,
-                    child: Icon(
-                      CupertinoIcons.sun_max_fill,
-                      color:drawerCon.theme? whiteColor:spbgColor,
-                      size: 24.0,
+                    child: AnimatedRotation(
+                      turns: drawerCon.rorateValue,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear,
+                      child: Icon(
+                        drawerCon.theme?CupertinoIcons.moon_stars_fill:CupertinoIcons.sun_max_fill,
+                        color:drawerCon.theme?whiteColor:spbgColor,
+                        size: 24.0,
+                      ),
                     ),
                   ),
                 ),
               )
+
             ],
           ),
 

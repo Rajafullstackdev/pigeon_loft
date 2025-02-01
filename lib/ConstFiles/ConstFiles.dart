@@ -23,6 +23,8 @@ double small=16;
 double medium=18;
 double large=20;
 double xlLarge=22;
+double xllLarge=24;
+double xlllLarge=26;
 
 /// font Class Const Fill
 FontsClass fontsValue = FontsClass();
@@ -53,3 +55,8 @@ String userImg='assets/UserICon.png';
 String birdImg='assets/bird.png';
 String singleBird='assets/Single.png';
 String pairBird='assets/Pairs.png';
+
+///IMage Selecte Option
+
+String imgOptionCamera='camera';
+String imgOptionGallery='gallery';

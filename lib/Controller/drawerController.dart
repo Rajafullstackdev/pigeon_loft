@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 import 'package:pigeon_loft/Model/drawerModel.dart';
 
 class drawerController extends GetxController {
+
 /// selected index
   int selectIndex=0;
+  double rorateValue=0;
 
   ///theme icon value
   bool theme=false;
@@ -13,7 +16,7 @@ class drawerController extends GetxController {
   List<drawerMenu> menuList = [
     drawerMenu(
       itemName: "DashBoard",
-      itemIcon: Icons.home,
+      itemIcon: CupertinoIcons.home ,
     ),
     drawerMenu(
       itemName: "My Pigeon",
@@ -94,6 +97,7 @@ class drawerController extends GetxController {
 
   changeTheme(){
     theme=!theme;
+    rorateValue=rorateValue == 0 ? 1  : 0;
     update();
   }
 }

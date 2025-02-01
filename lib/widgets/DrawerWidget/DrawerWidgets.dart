@@ -4,7 +4,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
 import 'package:pigeon_loft/Controller/drawerController.dart';
 import 'package:pigeon_loft/untils/AuthUntils/Authuntil.dart';
-import 'package:pigeon_loft/widgets/CopyrightWidgets/CopyrightsWidget.dart';
 import 'package:pigeon_loft/widgets/DrawerHeader/DrawerHeader.dart';
 import 'package:pigeon_loft/widgets/TextWidgets/customeText.dart';
 import 'package:pigeon_loft/widgets/custtomIconButton/customIconButton.dart';
@@ -29,9 +28,10 @@ class _drawerState extends State<drawer> {
           physics: ScrollPhysics(),
           child: Column(
             children: [
-
+              ///drawer Head
               drawerHead(),
 
+              ///drawer Menu List
               Container(
                 margin: EdgeInsets.only(top: 10),
                 child: SingleChildScrollView(
@@ -81,10 +81,11 @@ class _drawerState extends State<drawer> {
 
                 )
               ),
-              Padding(
+
+              /*              Padding(
                 padding: const EdgeInsets.only(top: 15,bottom: 15),
                 child: CopyRights(copyRightText: "CopyRights @ 2025",),
-              )
+              )*/
             ],
           ),
         ),

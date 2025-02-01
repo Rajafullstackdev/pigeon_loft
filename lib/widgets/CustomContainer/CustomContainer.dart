@@ -35,7 +35,7 @@ class _CustomContainerState extends State<CustomContainer> {
   Widget build(BuildContext context) {
     return Material(
         elevation: widget.elevation ?? 5,
-        color: widget.innerColor ?? whiteColor,
+        color: widget.outColor ?? whiteColor,
         borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
         shadowColor: widget.shadowColor??Colors.black12,
         child: Container(

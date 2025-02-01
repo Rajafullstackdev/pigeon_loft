@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pigeon_loft/ConstFiles/ConstFiles.dart';
+import 'package:pigeon_loft/Controller/userRegisterController.dart';
 import 'package:pigeon_loft/Screens/DashBoardScreen/DashBoardScreen.dart';
 import 'package:pigeon_loft/untils/userReguntils/userReguntils.dart';
 import 'package:pigeon_loft/widgets/AppBarWidgets/AppBarWidget.dart';
@@ -21,22 +22,16 @@ class userRegScreen extends StatefulWidget {
 
 class _userRegScreenState extends State<userRegScreen> {
 
-
-  TextEditingController userNameController=TextEditingController();
-  TextEditingController PhoneNoController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
+  final dataController=Get.put(userRegisterController(),tag: 'userRegister');
 
   @override
   void initState() {
     setState(() {
-      PhoneNoController.text=widget.phoneNumber;
+      dataController.phoneNoController.text=widget.phoneNumber;
     });
     // TODO: implement initState
     super.initState();
   }
-
-  FocusNode nameFocus=FocusNode();
-  FocusNode emailFocus=FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,16 +74,16 @@ class _userRegScreenState extends State<userRegScreen> {
                   left: 8,
                 ),
                 child: TextField(
-                  focusNode: nameFocus,
+                  focusNode: dataController.nameFocus,
                   inputFormatters: [
                     UpperCaseTextFormatter()
                   ],
                   onTap: () {
                   },
                   onSubmitted: (value){
-                    nameFocus.requestFocus(emailFocus);
+                    dataController.nameFocus.requestFocus(dataController.emailFocus);
                   },
-                  controller: userNameController,
+                  controller: dataController.userNameController,
                   decoration: InputDecoration(
                     prefixIcon:Icon(Icons.person,color: spbgColor,),
                     counterText: "",
@@ -126,7 +121,7 @@ class _userRegScreenState extends State<userRegScreen> {
                   onTap: () {
                   },
 
-                  controller: PhoneNoController,
+                  controller: dataController.phoneNoController,
                   keyboardType: TextInputType.number,
                  // maxLength: 10,
                   decoration: InputDecoration(
